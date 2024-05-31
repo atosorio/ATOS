@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Asociaciones</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2>Lista de Asociaciones</h2>
+    <div class="mb-3">
+        <a href="/verAsociacion/formAsociacion" class="btn btn-primary">Crear Nueva Asociación</a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>País</th>
+            <th>Presidente</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="asociacion : ${listaAsociacion}">
+            <td th:text="${asociacion.id}"></td>
+            <td th:text="${asociacion.nombre}"></td>
+            <td th:text="${asociacion.pais}"></td>
+            <td th:text="${asociacion.presidente}"></td>
+            <td>
+                <a th:href="@{/asociacion/editar/{id}(id=${asociacion.id})}" class="btn btn-sm btn-primary">Editar</a>
+                <a th:href="@{/asociacion/eliminar/{id}(id=${asociacion.id})}" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/}" class="btn btn-secondary">Volver al Inicio</a>
+</div>
+</body>
+</html>

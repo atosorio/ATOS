@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Club</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2>Formulario de Club</h2>
+    <form action="#" th:action="@{/guardarClub}" th:object="${club}" method="post">
+        <input type="hidden" th:field="*{id}" /> <!-- Campo oculto para el ID del club -->
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
+            <small th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="form-text text-danger"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="entrenador">Entrenador:</label>
+            <select id="entrenador" name="entrenador" class="form-control" th:field="*{entrenadores}">
+                <option th:each="entrenador : ${listaEntrenadores}" th:value="${entrenador.id}" th:text="${entrenador.nombre}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="jugadores">Jugadores:</label>
+            <select id="jugadores" name="jugadores" class="form-control" multiple th:field="*{jugadores}">
+                <option th:each="jugador : ${listaJugadores}" th:value="${jugador.id}" th:text="${jugador.nombre}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="asociacion">Asociación:</label>
+            <select id="asociacion" name="asociacion" class="form-control" th:field="*{asociacion}">
+                <option th:each="asociacion : ${listaAsociacion}" th:value="${asociacion.id}" th:text="${asociacion.nombre}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="competiciones">Competiciones:</label>
+            <select id="competiciones" name="competiciones" class="form-control" multiple th:field="*{competiciones}">
+                <option th:each="competicion : ${listaCompeticiones}" th:value="${competicion.id}" th:text="${competicion.nombre}"></option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"
+        integrity="sha384-Zw7r017UCG3Qq49nGwAQv8JpF2dFpjIWqEUDg1s8fBbF06E3brJfAcr8BZj1Z2Ns"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+jBb8ab1m1E80j2UmPxCGA"
+        crossorigin="anonymous"></script>
+</body>
+</html>

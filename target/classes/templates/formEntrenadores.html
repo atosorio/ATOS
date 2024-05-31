@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Entrenador</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2>Formulario de Entrenador</h2>
+    <form action="#" th:action="@{/guardarEntrenadores}" th:object="${entrenadores}" method="post">
+		<input type="hidden" th:field="*{id}" /> <!-- Campo oculto para el ID del club -->
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
+            <small th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="form-text text-danger"></small>
+        </div>
+        <div class="form-group">
+            <label for="apellido">Apellido:</label>
+            <input type="text" class="form-control" id="apellido" th:field="*{apellido}" required>
+            <small th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}" class="form-text text-danger"></small>
+        </div>
+        <div class="form-group">
+            <label for="edad">Edad:</label>
+            <input type="number" class="form-control" id="edad" th:field="*{edad}" required>
+            <small th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}" class="form-text text-danger"></small>
+        </div>
+        <div class="form-group">
+            <label for="nacionalidad">Nacionalidad:</label>
+            <input type="text" class="form-control" id="nacionalidad" th:field="*{nacionalidad}" required>
+            <small th:if="${#fields.hasErrors('nacionalidad')}" th:errors="*{nacionalidad}" class="form-text text-danger"></small>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"
+        integrity="sha384-Zw7r017UCG3Qq49nGwAQv8JpF2dFpjIWqEUDg1s8fBbF06E3brJfAcr8BZj1Z2Ns"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+jBb8ab1m1E80j2UmPxCGA"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Clubs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2>Lista de Clubs</h2>
+    <div class="mb-3">
+        <a href="/verClub/formClub" class="btn btn-primary">Crear Nuevo Club</a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Entrenador</th>
+                <th>Asociación</th>
+                <th>Competiciones</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="club : ${listaClub}">
+                <td th:text="${club.id}"></td>
+                <td th:text="${club.nombre}"></td>
+                <td th:text="${club.entrenadores != null ? club.entrenadores.nombre : 'Sin entrenador'}"></td>
+                <td th:text="${club.asociacion != null ? club.asociacion.nombre : 'Sin asociación'}"></td>
+                <td>
+                    <ul th:if="${club.competiciones != null}">
+                        <li th:each="competicion : ${club.competiciones}" th:text="${competicion.nombre}"></li>
+                    </ul>
+                    <span th:unless="${club.competiciones != null}">Sin competiciones</span>
+                </td>
+                <td>
+                    <a th:href="@{/club/editar/{id}(id=${club.id})}" class="btn btn-sm btn-primary">Editar</a>
+                    <a th:href="@{/club/eliminar/{id}(id=${club.id})}" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/}" class="btn btn-secondary">Volver al Inicio</a>
+</div>
+</body>
+</html>

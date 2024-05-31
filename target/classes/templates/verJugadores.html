@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Jugadores</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2>Lista de Jugadores</h2>
+    <div class="mb-3">
+        <a href="/verJugadores/formJugadores" class="btn btn-primary">Crear Nuevo Jugador</a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Número</th>
+            <th>Posición</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="jugadores : ${listaJugadores}">
+            <td th:text="${jugadores.id}"></td>
+            <td th:text="${jugadores.nombre}"></td>
+            <td th:text="${jugadores.apellido}"></td>
+            <td th:text="${jugadores.numero}"></td>
+            <td th:text="${jugadores.posicion}"></td>
+            <td>
+                <a th:href="@{/jugadores/editar/{id}(id=${jugadores.id})}" class="btn btn-sm btn-primary">Editar</a>
+                <a th:href="@{/jugadores/eliminar/{id}(id=${jugadores.id})}" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/}" class="btn btn-secondary">Volver al Inicio</a>
+</div>
+</body>
+</html>
